@@ -46,7 +46,7 @@ h1 {
     width: 260px;
     display: inline-block;
 }
-.exch-rate-rub {
+.exch-rate {
     display: flex;
     vertical-align: middle;
     text-align: center;
@@ -56,9 +56,76 @@ h1 {
     font-size: 12px;
     line-height: 14px;
     color: #C6C6C6;
-    background: #833AE0;
-    border-radius: 3px 0px 0px 3px;
 }
-.exch-rate-rub p {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; 
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+#rub {
+    background: #833AE0;
+    border-radius: 3px 0 0 3px;
+}
+#rub p {
+    color: white;
+}
+#gbp {
+    border-radius: 0 3px 3px 0;
+}
+#to-rub {
+    border-radius: 3px 0 0 3px;
+}
+#to-usd {
+    background-color: #833AE0;
+}
+#to-usd p{
+     color: white;
+}
+#to-gbp {
+    border-radius: 0 3px 3px 0;
+}
+.converter-rate-container {
+    display: flex;
+}
+.exch-rate p {
     margin: auto;
+}
+.convert-from{
+    border: none;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    width: 250px;
+    height: 40px;
+    margin: 15px 0 20px 5px;
+    outline: none;
+}
+.convert-to {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    width: 250px;
+    height: 43px;
+    margin: 15px 0 21px 5px;
+    overflow-x: scroll;
+}
+.convert-to::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.from-and-to {
+    margin: 0;
+    padding: 12px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #C6C6C6;;
 }
