@@ -56,6 +56,19 @@ h1 {
     font-size: 12px;
     line-height: 14px;
     color: #C6C6C6;
+    cursor: pointer;
+}
+.exch-rate-to {
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+    width: 65px;
+    height: 30px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #C6C6C6;
+    cursor: pointer;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -96,6 +109,9 @@ input[type="number"]:focus {
 .exch-rate p {
     margin: auto;
 }
+.exch-rate-to p {
+    margin: auto;
+}
 .convert-from{
     border: none;
     font-weight: 700;
@@ -107,16 +123,14 @@ input[type="number"]:focus {
     outline: none;
 }
 .convert-to {
-    display: flex;
-    vertical-align: middle;
-    align-items: center;
+    border: none;
     font-weight: 700;
     font-size: 36px;
     line-height: 42px;
     width: 250px;
-    height: 43px;
-    margin: 15px 0 21px 5px;
-    overflow-x: scroll;
+    height: 40px;
+    margin: 15px 0 20px 5px;
+    outline: none;
 }
 .convert-to::-webkit-scrollbar {
     width: 0;
