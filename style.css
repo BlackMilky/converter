@@ -143,3 +143,10 @@ input[type="number"]:focus {
     line-height: 14px;
     color: #C6C6C6;;
 }
+.error {
+    display: none;
+    margin: auto;
+    width: 400px;
+    color: darkred;
+    font-weight: bold;
+}
