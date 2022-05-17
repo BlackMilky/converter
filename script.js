@@ -9,6 +9,8 @@ let inputFrom = document.querySelector(`.convert-from`);
 let inputTo = document.querySelector(`.convert-to`);
 document.querySelector(`.convert-from`).addEventListener(`keyup`, setValueTo);
 document.querySelector(`.convert-to`).addEventListener(`keyup`, setValueFrom);
+let infoToFrom = document.querySelector(`#to-from`);
+let infoFromTo = document.querySelector(`#from-to`);
 const RUB = {};
 const EUR = {};
 const USD = {};
@@ -19,13 +21,37 @@ getValuesRub();
 setInterval(getValuesRub, 5000);
 
 
+function setInfoValues () {
+    if (selectedRateFrom === selectedRateTo) {
+        infoToFrom.innerText = `1 ${selectedRateFrom} = 1 ${selectedRateTo}`;
+    }
+    else if (selectedRateFrom === `RUB`) {
+        infoToFrom.innerText = `1 RUB = ${RUB[(selectedRateTo).toLowerCase()]} ${selectedRateTo}`
+    } else if (selectedRateFrom === `USD`) {
+        infoToFrom.innerText = `1 USD = ${USD[(selectedRateTo).toLowerCase()]} ${selectedRateTo}`
+    } else if (selectedRateFrom === `EUR`) {
+        infoToFrom.innerText = `1 EUR = ${EUR[(selectedRateTo).toLowerCase()]} ${selectedRateTo}`
+    } else if (selectedRateFrom === `GBP`) {
+        infoToFrom.innerText = `1 GBP = ${GBP[(selectedRateTo).toLowerCase()]} ${selectedRateTo}`
+    }
+    if (selectedRateTo === selectedRateFrom) {
+        infoFromTo.innerText = `1 ${selectedRateTo} = 1 ${selectedRateFrom}`;
+    }
+    else if (selectedRateTo === `RUB`) {
+        infoFromTo.innerText = `1 RUB = ${RUB[(selectedRateFrom).toLowerCase()]} ${selectedRateFrom}`
+    } else if (selectedRateTo === `USD`) {
+        infoFromTo.innerText = `1 USD = ${USD[(selectedRateFrom).toLowerCase()]} ${selectedRateFrom}`
+    } else if (selectedRateTo === `EUR`) {
+        infoFromTo.innerText = `1 EUR = ${EUR[(selectedRateFrom).toLowerCase()]} ${selectedRateFrom}`
+    } else if (selectedRateTo === `GBP`) {
+        infoFromTo.innerText = `1 GBP = ${GBP[(selectedRateFrom).toLowerCase()]} ${selectedRateFrom}`
+    }
+}
 
 function setValueFrom () {
-    if (errorLever === true) {
-        inputFrom.value = inputTo.value;
-    } else if (inputTo.value == 0 ) {
+     if (inputTo.value == 0 ) {
         inputFrom.value = 0;
-    } else if (selectedRateFrom === selectedRateTo) {
+    } else if (selectedRateFrom === selectedRateTo || errorLever === true) {
         inputFrom.value = inputTo.value
     } else {
         if (selectedRateTo === `RUB`) {
@@ -94,6 +120,7 @@ async function getValuesUsd () {
     USD.rub = data.rates.RUB;
     USD.gbp = data.rates.GBP;
     setValueTo();
+    setInfoValues();
 }
 async function getValuesGbp () {
     let resp = await fetch(BASE_URL + `base=GBP&symbols=USD,RUB,EUR`);
@@ -124,7 +151,8 @@ function selectRateFrom (e) {
         e.target.style.background = `#833AE0`;
         selectedRateFrom = e.target.children[0].innerText;
     };  
-    setValueTo(); 
+    setValueTo();
+    setInfoValues();
 }
 function selectRateTo (e) {
     refreshBackgroundsTo();
@@ -138,6 +166,7 @@ function selectRateTo (e) {
         selectedRateTo = e.target.children[0].innerText;
     };
     setValueTo();
+    setInfoValues();
 }
 function refreshBackgroundsFrom() {
     arrOfRatesFrom.forEach(el =>{
