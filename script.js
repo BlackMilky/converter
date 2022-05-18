@@ -16,9 +16,10 @@ const EUR = {};
 const USD = {};
 const GBP = {};
 let errorLever = false;
+let lever = true;
 
 getValuesRub();
-setInterval(getValuesRub, 5000);
+setInterval(getValuesRub, 20000);
 
 
 function setInfoValues () {
@@ -51,7 +52,7 @@ function setInfoValues () {
 function setValueFrom () {
      if (inputTo.value == 0 ) {
         inputFrom.value = 0;
-    } else if (selectedRateFrom === selectedRateTo || errorLever === true) {
+    } else if (selectedRateFrom === selectedRateTo ) {
         inputFrom.value = inputTo.value
     } else {
         if (selectedRateTo === `RUB`) {
@@ -67,9 +68,7 @@ function setValueFrom () {
 }
 
 function setValueTo () {
-    if (errorLever === true) {
-        inputTo.value = inputFrom.value;
-    }else if (inputFrom.value == 0 ) {
+    if (inputFrom.value == 0 ) {
         inputTo.value = 0;
     } else if (selectedRateTo === selectedRateFrom) {
         inputTo.value = inputFrom.value
@@ -119,7 +118,10 @@ async function getValuesUsd () {
     USD.eur = data.rates.EUR;
     USD.rub = data.rates.RUB;
     USD.gbp = data.rates.GBP;
-    setValueTo();
+    if (lever === true) {
+        setValueTo();
+        lever = false;
+    }
     setInfoValues();
 }
 async function getValuesGbp () {
